@@ -8451,7 +8451,6 @@ Debouncing is a programming technique used to limit how often a function is exec
 
 For example, when a user types in a search box, you typically want to wait until they’ve finished typing before fetching suggestions. Without debouncing, an API call would be triggered on every keystroke, potentially causing performance issues. With debouncing, the function call is postponed until the user stops typing for a specified period (e.g., 300ms). If the user types again before this time elapses, the timer resets.
 
----
 
 **Typical use cases for debouncing include:**
 
