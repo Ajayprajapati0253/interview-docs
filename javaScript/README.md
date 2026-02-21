@@ -8447,55 +8447,55 @@ Because of hoisting, functions can be used before they are declared.
 
 437. ### What is debouncing?
 
-    Debouncing is a programming technique used to limit how often a function is executed. Specifically, it ensures that a function is only triggered after a certain amount of time has passed since it was last invoked. This prevents unnecessary or excessive function calls, which can help optimize performance and reduce unnecessary CPU usage or API requests.
+Debouncing is a programming technique used to limit how often a function is executed. Specifically, it ensures that a function is only triggered after a certain amount of time has passed since it was last invoked. This prevents unnecessary or excessive function calls, which can help optimize performance and reduce unnecessary CPU usage or API requests.
 
-    For example, when a user types in a search box, you typically want to wait until they’ve finished typing before fetching suggestions. Without debouncing, an API call would be triggered on every keystroke, potentially causing performance issues. With debouncing, the function call is postponed until the user stops typing for a specified period (e.g., 300ms). If the user types again before this time elapses, the timer resets.
+For example, when a user types in a search box, you typically want to wait until they’ve finished typing before fetching suggestions. Without debouncing, an API call would be triggered on every keystroke, potentially causing performance issues. With debouncing, the function call is postponed until the user stops typing for a specified period (e.g., 300ms). If the user types again before this time elapses, the timer resets.
 
-   ---
-    **Typical use cases for debouncing include:**
+---
 
-    *   Search box suggestions (wait until typing pauses before fetching results)
-    *   Auto-saving text fields (save only after the user stops typing)
-    *   Preventing double-clicks on buttons
-    *   Handling window resize or scroll events efficiently
+**Typical use cases for debouncing include:**
 
-    **Example Debounce Function:**
+- Search box suggestions (wait until typing pauses before fetching results)
+- Auto-saving text fields (save only after the user stops typing)
+- Preventing double-clicks on buttons
+- Handling window resize or scroll events efficiently
 
-    ```javascript
-    function debounce(func, timeout = 500) {
-      let timer;
-      return function (...args) {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-          func.apply(this, args);
-        }, timeout);
-      };
-    }
-    ```
+**Example Debounce Function:**
 
-    **Usage Example:**
+```javascript
+function debounce(func, timeout = 500) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+```
+**Usage Example:**
 
+```javascript
+function fetchResults() {
+  console.log("Fetching input suggestions");
+}
+const processChange = debounce(fetchResults, 300);
 
-    ```javascript
-    function fetchResults() {
-      console.log("Fetching input suggestions");
-    }
-    const processChange = debounce(fetchResults, 300);
+// Attach to input element
+<input type="text" onkeyup="processChange()" />
 
-    // Attach to input element
-    <input type="text" onkeyup="processChange()" />
+// Attach to button
+<button onclick="processChange()">Click me</button>
 
-    // Attach to button
-    <button onclick="processChange()">Click me</button>
+// Attach to window event
+window.addEventListener("scroll", processChange);
+```
 
-    // Attach to window event
-    window.addEventListener("scroll", processChange);
-    ```
+**How it works:** 
 
-    **How it works:**  
-    When `processChange` is invoked (e.g., by typing or clicking), any pending execution is canceled, and the function is scheduled to run after the specified delay. If another event occurs before the delay is up, the timer resets, and the function will only run after events have stopped for the delay duration.
+When `processChange` is invoked (e.g., by typing or clicking), any pending execution is canceled, and the function is scheduled to run after the specified delay. If another event occurs before the delay is up, the timer resets, and the function will only run after events have stopped for the delay duration.
 
-    Debouncing is an essential tool for improving user experience and application performance, especially when dealing with events that can fire rapidly and repeatedly.
+Debouncing is an essential tool for improving user experience and application performance, especially when dealing with events that can fire rapidly and repeatedly.
 
  **[⬆ Back to Top](#table-of-contents)**
 
