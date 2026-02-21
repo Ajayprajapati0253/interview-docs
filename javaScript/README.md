@@ -8451,6 +8451,7 @@ Because of hoisting, functions can be used before they are declared.
 
     For example, when a user types in a search box, you typically want to wait until they’ve finished typing before fetching suggestions. Without debouncing, an API call would be triggered on every keystroke, potentially causing performance issues. With debouncing, the function call is postponed until the user stops typing for a specified period (e.g., 300ms). If the user types again before this time elapses, the timer resets.
 
+   ---
     **Typical use cases for debouncing include:**
 
     *   Search box suggestions (wait until typing pauses before fetching results)
@@ -8460,9 +8461,7 @@ Because of hoisting, functions can be used before they are declared.
 
     **Example Debounce Function:**
 
-    JavaScript
-
-    ```css
+    ```javascript
     function debounce(func, timeout = 500) {
       let timer;
       return function (...args) {
@@ -8476,9 +8475,8 @@ Because of hoisting, functions can be used before they are declared.
 
     **Usage Example:**
 
-    JavaScript
 
-    ```css
+    ```javascript
     function fetchResults() {
       console.log("Fetching input suggestions");
     }
